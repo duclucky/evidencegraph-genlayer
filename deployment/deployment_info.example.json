@@ -1,0 +1,10 @@
+{
+  "project": "EvidenceGraph",
+  "module": "On-chain Evidence Registry",
+  "network": "",
+  "contract_address": "",
+  "deploy_transaction_hash": "",
+  "example_register_transaction_hash": "",
+  "registered_package_id": "",
+  "deployed_at": ""
+}

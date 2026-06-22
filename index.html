@@ -11,7 +11,7 @@
   <header class="hero">
     <nav class="nav shell">
       <a class="brand" href="#top" aria-label="EvidenceGraph home"><span>EG</span> EvidenceGraph</a>
-      <a class="nav-link" href="#builder">Build a pack <span aria-hidden="true">→</span></a>
+      <div class="nav-actions"><a class="nav-link" href="#builder">Build a pack</a><a class="nav-link" href="#registry">On-chain Registry <span aria-hidden="true">→</span></a></div>
     </nav>
     <div class="hero-grid shell" id="top">
       <div>
@@ -80,9 +80,38 @@
         </aside>
       </div>
     </section>
+
+    <section class="registry-section" id="registry">
+      <div class="shell registry-heading">
+        <div><p class="eyebrow">EvidenceGraph v1.1</p><h2>On-chain Evidence Registry</h2></div>
+        <p>The local MVP prepares a registry-ready evidence package now. After contract deployment, record the network, contract, and transaction proofs here without changing the underlying evidence score.</p>
+      </div>
+      <div class="registry-workspace shell">
+        <div class="panel registry-form-panel">
+          <div class="registry-status"><span></span> Deployment-ready draft · No blockchain connection required</div>
+          <div class="section-number"><span>03</span><div><h3>Record deployment evidence</h3><p>Leave fields blank until a verified GenLayer deployment exists.</p></div></div>
+          <div class="field-grid">
+            <label>Network<input id="registryNetwork" placeholder="e.g. GenLayer testnet"></label>
+            <label>Contract address<input id="registryContractAddress" placeholder="0x..."></label>
+          </div>
+          <label>Deploy transaction hash<input id="registryDeployTx" placeholder="0x..."></label>
+          <label>Register evidence transaction hash<input id="registryRegisterTx" placeholder="0x..."></label>
+          <div class="registry-note"><strong>What gets registered?</strong><p>The structured EvidenceGraph JSON and its content hash. Scoring remains explainable off-chain; the registry provides durable package identity and review status for an Intelligent Contract.</p></div>
+        </div>
+
+        <aside class="panel registry-preview-panel">
+          <div class="preview-heading"><div><p class="eyebrow">Registry payload</p><h3>Evidence package JSON</h3></div><span>Local preview</span></div>
+          <pre id="registryJsonPreview">{
+  "status": "Review an evidence pack to populate this preview."
+}</pre>
+          <div class="deployment-evidence-head"><div><h4>Deployment evidence block</h4><p>Copy into a portal submission after deployment.</p></div><button type="button" id="copyDeploymentEvidence">Copy block</button></div>
+          <pre class="deployment-block" id="deploymentEvidencePreview"></pre>
+        </aside>
+      </div>
+    </section>
   </main>
 
-  <footer class="shell"><a class="brand" href="#top"><span>EG</span> EvidenceGraph</a><p>Evidence preparation and quality scoring for Intelligent Contracts.</p></footer>
+  <footer class="shell"><a class="brand" href="#top"><span>EG</span> EvidenceGraph</a><p>Prepare, score, and register evidence for Intelligent Contracts.</p></footer>
   <template id="evidenceTemplate">
     <div class="evidence-item">
       <div class="item-top"><strong>Evidence <span class="item-index"></span></strong><button type="button" class="remove-item" aria-label="Remove evidence item">Remove</button></div>

@@ -4,12 +4,12 @@
 
 - Project name: **EvidenceGraph**
 - Category: **Developer tooling / Intelligent Contract infrastructure**
-- One-line pitch: **Prepare, score, and structure web evidence before an Intelligent Contract reasons over it.**
+- One-line pitch: **Prepare, score, and register structured evidence before an Intelligent Contract reasons over it.**
 - Primary users: GenLayer builders preparing milestone, grant, SLA, dispute, and public-event evidence
 
 ## Project
 
-**EvidenceGraph** is an AI Evidence Pack Builder for GenLayer Intelligent Contracts. It transforms raw claims and scattered source links into structured packages with explainable quality scores, missing-proof detection, manipulation risk, and GenLayer-ready JSON.
+**EvidenceGraph v1.1** is an AI Evidence Pack Builder with an On-chain Evidence Registry for GenLayer Intelligent Contracts. It transforms raw claims and scattered source links into structured packages with explainable quality scores, missing-proof detection, manipulation risk, GenLayer-ready JSON, and a contract registration path.
 
 ## Problem and solution
 
@@ -19,13 +19,15 @@ EvidenceGraph does not decide the final dispute outcome. It is an evidence prepa
 
 ## Links and deployment details
 
-- GitHub repo URL: `[GITHUB_REPO_URL]`
+- GitHub repo URL: [https://github.com/duclucky/evidencegraph-genlayer](https://github.com/duclucky/evidencegraph-genlayer)
 - Vercel frontend URL: [https://evidencegraph-genlayer.vercel.app](https://evidencegraph-genlayer.vercel.app)
 - Demo video artifact: [media/evidencegraph_demo.mp4](media/evidencegraph_demo.mp4)
-- Hosted demo video URL: `[DEMO_VIDEO_URL]`
+- Hosted demo video URL: [https://github.com/duclucky/evidencegraph-genlayer/blob/main/media/evidencegraph_demo.mp4](https://github.com/duclucky/evidencegraph-genlayer/blob/main/media/evidencegraph_demo.mp4)
 - Network: `[NETWORK]`
 - Contract address: `[CONTRACT_ADDRESS]`
-- Transaction hash: `[TRANSACTION_HASH]`
+- Deploy transaction hash: `[DEPLOY_TRANSACTION_HASH]`
+- Register evidence transaction hash: `[REGISTER_EVIDENCE_TRANSACTION_HASH]`
+- Registered package ID: `[REGISTERED_PACKAGE_ID]`
 
 ## Key features
 
@@ -36,6 +38,9 @@ EvidenceGraph does not decide the final dispute outcome. It is an evidence prepa
 - Structured `evidencegraph.v1` JSON output
 - Static, webapp-first frontend and plain Python reference logic
 - GenLayer-style contract draft with explicit LLM and web-verification extension points
+- On-chain Evidence Registry reference implementation with preserved evidence hashes
+- Copy-ready network, contract, deployment transaction, and registration transaction evidence
+- Registry deployment draft and manual deployment record template
 
 ## What makes it different
 
@@ -43,7 +48,7 @@ EvidenceGraph is not an escrow, bounty platform, prediction market, or court/arb
 
 ## Technical implementation
 
-The webapp is dependency-free HTML, CSS, and JavaScript hosted directly from the repository root. A plain Python reference class provides the intended submit, review, retrieve, count, and export API with in-memory storage and a deterministic 100-point rubric. The exported `evidencegraph.v1` object includes a compact `contract_input` section for downstream use. The GenLayer contract file is explicitly marked as a deployment draft until a verified SDK version and network deployment are available.
+The webapp is dependency-free HTML, CSS, and JavaScript hosted directly from the repository root. A plain Python scoring class provides the intended submit, review, retrieve, count, and export API with a deterministic 100-point rubric. A separate `EvidenceRegistry` class registers the exported `evidencegraph.v1` JSON and content hash, then stores later review metadata without changing the registered proof. Both GenLayer contract files are explicitly marked as deployment drafts until a verified SDK version and network deployment are available.
 
 ## Reviewer demo path
 
@@ -51,6 +56,7 @@ The webapp is dependency-free HTML, CSS, and JavaScript hosted directly from the
 2. Review it to see missing independent/timestamped evidence and high manipulation risk.
 3. Load **Strong milestone pack** and review the repo, release, docs, demo, and tests.
 4. Compare the score and verdict, then expand `contract_input` in the JSON preview.
+5. Open **On-chain Registry** to preview the package and copy the deployment evidence block.
 
 ## GenLayer fit
 
@@ -58,4 +64,4 @@ Milestones, grants, agent SLAs, disputes, and public event claims frequently req
 
 ## Current status
 
-The browser MVP and local deterministic scoring engine are prepared. `contracts/evidence_graph_genlayer.py` is a deployment draft only; replace these placeholders with verified network, contract, and transaction details after a tested deployment.
+EvidenceGraph v1.1 includes the browser MVP, deterministic scoring engine, local registry, registry tests, deployment evidence UI, and two GenLayer-style contract drafts. It is not yet deployed. Replace the on-chain placeholders only with verified network, contract, deployment transaction, registration transaction, and package ID details after a tested deployment.

@@ -1,10 +1,10 @@
-# EvidenceGraph
+# EvidenceGraph v1.1
 
-**AI Evidence Pack Builder for GenLayer Intelligent Contracts.**
+**Prepare, score, and register structured evidence packages for GenLayer Intelligent Contracts.**
 
 **Live demo:** [https://evidencegraph-genlayer.vercel.app](https://evidencegraph-genlayer.vercel.app)
 
-EvidenceGraph turns raw claims, URLs, repository links, demos, screenshots, documentation, logs, and transaction references into structured evidence packages with quality scores, missing-proof detection, manipulation risk, and GenLayer-ready JSON.
+EvidenceGraph turns raw claims, URLs, repository links, demos, screenshots, documentation, logs, and transaction references into structured evidence packages with quality scores, missing-proof detection, manipulation risk, GenLayer-ready JSON, and an on-chain registration path.
 
 ## Problem
 
@@ -14,7 +14,7 @@ For an Intelligent Contract, evidence quality is input quality: missing context,
 
 ## Solution
 
-EvidenceGraph is an evidence preparation and quality-scoring layer. It gives builders immediate, deterministic feedback before an evidence pack reaches an Intelligent Contract. It is not an escrow, bounty, prediction market, court, or final dispute resolver; it improves the inputs to those systems.
+EvidenceGraph is an evidence preparation, quality-scoring, and registration layer. It gives builders immediate, deterministic feedback before an evidence pack reaches an Intelligent Contract, then provides a registry module for anchoring the package JSON and evidence hash. It is not an escrow, bounty, prediction market, court, or final dispute resolver; it improves and records the inputs to those systems.
 
 ## Why GenLayer
 
@@ -30,6 +30,9 @@ Many real claims cannot be resolved from a single numeric oracle. Milestone comp
 - Dedicated `contract_input` payload with normalized claim, evidence, use case, and quality gate
 - Weak and strong sample packs for a fast demo
 - Plain Python reference engine and GenLayer-style deployment draft
+- On-chain Evidence Registry reference logic with immutable package hash preservation
+- Deployment evidence UI for network, contract address, and transaction hashes
+- GenLayer-style registry contract draft and manual deployment checklist
 
 ## Demo flow
 
@@ -59,7 +62,25 @@ contracts/evidence_graph_genlayer.py
         └── deployment draft with explicit SDK integration placeholders
 ```
 
-The browser and Python engine implement the same rubric independently. The static app is the MVP experience; the Python class defines the intended contract-facing API. Exported packages contain the full human-readable review plus a compact `contract_input` object designed for downstream Intelligent Contract consumption.
+The browser and Python engine implement the same rubric independently. The static app is the MVP experience; the Python class defines the intended contract-facing API. Exported packages contain the full human-readable review plus a compact `contract_input` object designed for downstream Intelligent Contract consumption. The separate registry module owns registration and review state so the scoring rubric remains unchanged.
+
+The v1.1 architecture also includes `contracts/evidence_registry.py` for deterministic local registration, `contracts/evidence_registry_genlayer.py` for the GenLayer-style deployment draft, and `deployment/` for deployment instructions and evidence metadata.
+
+## On-chain Evidence Registry
+
+EvidenceGraph v1.1 adds the **EvidenceGraph On-chain Registry** (internally, the ProofStamp module). The local registry stores an EvidenceGraph JSON package together with its content hash, source URL, submitter, timestamp, status, and later review metadata. The registered evidence JSON and hash are preserved when a review is attached.
+
+This upgrade prevents the project from being only a static scoring page: the webapp prepares a deterministic registry payload and copy-ready deployment evidence, while the registry API defines how an Intelligent Contract can persist package identity and review state. The current browser remains connection-free by design; it does not pretend that a local preview is an on-chain transaction.
+
+After a real deployment, the module can produce verifiable Portal evidence:
+
+- GenLayer network
+- Registry contract address
+- Contract deployment transaction hash
+- Example evidence-registration transaction hash
+- Registered package ID
+
+Until deployment, those fields remain explicit placeholders. See [deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md) and [deployment/deployment_info.example.json](deployment/deployment_info.example.json).
 
 ## Scoring rubric
 
@@ -87,7 +108,7 @@ python -m unittest discover -s tests -p "test_*.py" -v
 
 Run this command in a local PowerShell session. The test suite uses Python's standard-library `unittest` only and requires no package installation. A Codex sandbox may block `python.exe` before it starts; that sandbox restriction is not evidence of a project or test failure. Record the authoritative result from local PowerShell in `TESTING.md`.
 
-Latest verified local result (2026-06-23): **9 tests passed, 0 failures (`OK`)** in 0.008 seconds. See `TESTING.md` for the recorded output summary.
+Verified v1.0 baseline (2026-06-23): **9 tests passed, 0 failures (`OK`)** in 0.008 seconds. EvidenceGraph v1.1 adds the registry suite, which is awaiting a fresh local run. See `TESTING.md` for the recorded status.
 
 ## Deploy to Vercel
 
@@ -105,7 +126,7 @@ If Vercel returns a 404, confirm that **Root Directory** points to the directory
 
 ## GenLayer integration notes
 
-`contracts/evidence_graph_genlayer.py` is deliberately a deployment draft, not a verified deployed contract. It preserves the public method surface, identifies persistent storage, and marks intended public write/view sections. SDK imports and decorators are comments because this repository does not pin or assume an unsupported GenLayer API.
+`contracts/evidence_graph_genlayer.py` and `contracts/evidence_registry_genlayer.py` are deliberately deployment drafts, not verified deployed contracts. They preserve the intended public method surfaces, identify persistent storage, and mark intended public write/view sections. SDK imports and decorators are comments because this repository does not pin or assume an unsupported GenLayer API.
 
 Before deployment, select a verified SDK version, replace in-memory dictionaries with persistent storage, implement LLM and web access through documented primitives, define consensus-safe outputs, and add contract-runtime tests.
 
@@ -113,9 +134,10 @@ Before deployment, select a verified SDK version, replace in-memory dictionaries
 
 - URLs are scored by their shape and evidence type; the static MVP does not fetch or verify them.
 - Semantic relevance is approximated from use-case and evidence-type matching.
-- Storage is in memory and resets when the Python process ends.
+- Local scoring and registry storage are in memory and reset when the Python process ends.
 - Browser and Python implementations must be kept aligned when the rubric changes.
 - The GenLayer draft has not been deployed or verified against a live SDK/runtime.
+- Network, contract, package, and transaction identifiers are unavailable until a real registry deployment.
 
 ## Future improvements
 
