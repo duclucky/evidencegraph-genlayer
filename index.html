@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Build structured, scored evidence packs for GenLayer Intelligent Contracts.">
+  <title>EvidenceGraph — AI Evidence Pack Builder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav shell">
+      <a class="brand" href="#top" aria-label="EvidenceGraph home"><span>EG</span> EvidenceGraph</a>
+      <a class="nav-link" href="#builder">Build a pack <span aria-hidden="true">→</span></a>
+    </nav>
+    <div class="hero-grid shell" id="top">
+      <div>
+        <p class="eyebrow">Evidence preparation for GenLayer</p>
+        <h1>Better evidence in.<br><em>Better reasoning out.</em></h1>
+        <p class="hero-copy">Turn scattered links, releases, demos, logs, and transaction proofs into a structured evidence package an Intelligent Contract can actually reason over.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#builder">Build evidence pack</a>
+          <span class="microcopy">No wallet. No server. No setup.</span>
+        </div>
+      </div>
+      <aside class="signal-card" aria-label="EvidenceGraph capabilities">
+        <div class="signal-top"><span>Evidence signal</span><span class="live-dot">Deterministic review</span></div>
+        <div class="score-orbit"><strong>87</strong><span>/ 100</span></div>
+        <div class="signal-bars">
+          <div><span>Completeness</span><i style="--value: 93%"></i></div>
+          <div><span>Source quality</span><i style="--value: 84%"></i></div>
+          <div><span>Manipulation resistance</span><i style="--value: 80%"></i></div>
+        </div>
+        <p>Evidence-ready package · Low manipulation risk</p>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="positioning shell" aria-label="Product positioning">
+      <p>EvidenceGraph does not decide disputes.</p>
+      <h2>It prepares the proof layer before judgment begins.</h2>
+      <div class="pill-row"><span>Quality scoring</span><span>Missing-proof detection</span><span>Structured JSON</span><span>Manipulation risk</span></div>
+      <div class="boundary-row" aria-label="What EvidenceGraph is not"><span>Not escrow</span><span>Not a bounty app</span><span>Not a prediction market</span><span>Not a court clone</span></div>
+    </section>
+
+    <section class="builder-section" id="builder">
+      <div class="shell builder-heading">
+        <div><p class="eyebrow">Evidence pack builder</p><h2>Shape your claim into reviewable proof.</h2></div>
+        <div class="samples" aria-label="Load a sample"><span>Try a sample</span><button type="button" id="weakSample">Weak self-claim</button><button type="button" id="strongSample">Strong milestone pack</button></div>
+      </div>
+
+      <div class="workspace shell">
+        <form class="panel form-panel" id="evidenceForm">
+          <div class="section-number"><span>01</span><div><h3>Define the claim</h3><p>Be precise about what the evidence should prove.</p></div></div>
+          <label>Claim title<input id="claimTitle" required placeholder="e.g. Milestone 2 shipped successfully"></label>
+          <label>Claim description<textarea id="claimDescription" required rows="4" placeholder="Describe the claim, scope, and what a reviewer should verify..."></textarea></label>
+          <div class="field-grid">
+            <label>Target GenLayer use case<select id="targetUseCase"><option value="builder_submission">Builder submission</option><option value="milestone_proof">Milestone proof</option><option value="dispute_evidence">Dispute evidence</option><option value="agent_sla_claim">Agent SLA claim</option><option value="grant_proposal">Grant proposal</option><option value="prediction_resolver">Prediction resolver</option><option value="other">Other</option></select></label>
+            <label>Expected outcome <small>optional</small><input id="expectedOutcome" placeholder="e.g. Approve milestone"></label>
+          </div>
+
+          <div class="rule"></div>
+          <div class="section-number"><span>02</span><div><h3>Add evidence</h3><p>Use public, timestamped, independent sources where possible.</p></div></div>
+          <div id="evidenceItems"></div>
+          <button class="add-button" id="addEvidence" type="button"><span>+</span> Add evidence item</button>
+          <button class="button primary review-button" type="submit">Review evidence pack <span aria-hidden="true">→</span></button>
+        </form>
+
+        <aside class="panel result-panel" id="resultPanel" aria-live="polite">
+          <div class="empty-state" id="emptyState"><div class="empty-mark">◇</div><h3>Your evidence review appears here</h3><p>Add a claim and its sources, then run the review to see quality, risk, and readiness.</p></div>
+          <div id="results" hidden>
+            <div class="result-head"><div><p class="eyebrow">Review complete</p><h3 id="verdictLabel">Evidence ready</h3></div><div class="total-score"><strong id="totalScore">0</strong><span>/100</span></div></div>
+            <div class="badges"><span id="qualityBadge"></span><span id="riskBadge"></span><span id="readyBadge"></span></div>
+            <div class="score-list" id="scoreList"></div>
+            <div class="result-block"><h4>Missing evidence</h4><ul id="missingList"></ul></div>
+            <div class="result-block recommendation"><h4>Recommendation</h4><p id="recommendation"></p></div>
+            <details><summary>Evidence package JSON <span>View structured output</span></summary><div class="json-actions"><button type="button" id="copyJson">Copy JSON</button></div><pre id="jsonPreview"></pre></details>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell"><a class="brand" href="#top"><span>EG</span> EvidenceGraph</a><p>Evidence preparation and quality scoring for Intelligent Contracts.</p></footer>
+  <template id="evidenceTemplate">
+    <div class="evidence-item">
+      <div class="item-top"><strong>Evidence <span class="item-index"></span></strong><button type="button" class="remove-item" aria-label="Remove evidence item">Remove</button></div>
+      <div class="field-grid"><label>Evidence type<select class="evidence-type"><option value="github_repo">GitHub repo</option><option value="commit_release">Commit or release</option><option value="demo_video">Demo video</option><option value="documentation">Documentation</option><option value="test_result">Test result</option><option value="screenshot">Screenshot</option><option value="transaction_hash">Transaction hash</option><option value="article_source">Article / source</option><option value="api_log">API / log</option><option value="other">Other</option></select></label><label>Public URL<input class="evidence-url" type="url" placeholder="https://..."></label></div>
+      <label>What does this prove?<input class="evidence-description" placeholder="Briefly connect this source to the claim"></label>
+    </div>
+  </template>
+  <script src="app.js"></script>
+</body>
+</html>

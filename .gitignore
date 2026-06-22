@@ -1,0 +1,6 @@
+
+tools/ffmpeg/
+tools/ffmpeg/ffmpeg.exe
+*.exe
+__pycache__/
+*.py[cod]
