@@ -2,6 +2,8 @@
 
 **AI Evidence Pack Builder for GenLayer Intelligent Contracts.**
 
+**Live demo:** [https://evidencegraph-genlayer.vercel.app](https://evidencegraph-genlayer.vercel.app)
+
 EvidenceGraph turns raw claims, URLs, repository links, demos, screenshots, documentation, logs, and transaction references into structured evidence packages with quality scores, missing-proof detection, manipulation risk, and GenLayer-ready JSON.
 
 ## Problem

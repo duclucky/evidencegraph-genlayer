@@ -20,7 +20,7 @@ EvidenceGraph does not decide the final dispute outcome. It is an evidence prepa
 ## Links and deployment details
 
 - GitHub repo URL: `[GITHUB_REPO_URL]`
-- Vercel frontend URL: `[VERCEL_FRONTEND_URL]`
+- Vercel frontend URL: [https://evidencegraph-genlayer.vercel.app](https://evidencegraph-genlayer.vercel.app)
 - Demo video artifact: [media/evidencegraph_demo.mp4](media/evidencegraph_demo.mp4)
 - Hosted demo video URL: `[DEMO_VIDEO_URL]`
 - Network: `[NETWORK]`
