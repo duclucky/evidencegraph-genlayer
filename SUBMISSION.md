@@ -23,11 +23,12 @@ EvidenceGraph does not decide the final dispute outcome. It is an evidence prepa
 - Vercel frontend URL: [https://evidencegraph-genlayer.vercel.app](https://evidencegraph-genlayer.vercel.app)
 - Demo video artifact: [media/evidencegraph_demo.mp4](media/evidencegraph_demo.mp4)
 - Hosted demo video URL: [https://github.com/duclucky/evidencegraph-genlayer/blob/main/media/evidencegraph_demo.mp4](https://github.com/duclucky/evidencegraph-genlayer/blob/main/media/evidencegraph_demo.mp4)
-- Network: `[NETWORK]`
-- Contract address: `[CONTRACT_ADDRESS]`
-- Deploy transaction hash: `[DEPLOY_TRANSACTION_HASH]`
-- Register evidence transaction hash: `[REGISTER_EVIDENCE_TRANSACTION_HASH]`
-- Registered package ID: `[REGISTERED_PACKAGE_ID]`
+- Network: `GenLayer Bradbury Testnet`
+- Contract address: `0xd09032a85dB930dCdE10994579a80D0d70fe3E15`
+- Deploy transaction hash: `0x5d18235a344652f8e86d5c9136526215135413c4277f6ad6cfa894686c2218ef`
+- Register evidence transaction hash: `0x4895a86adb04e6b2041319341e2caf429da0dd303167daf934ebbd64f8a4ee6f`
+- Review transaction hash: `0xc8113b2d9a487a9ba682f35a96bfa752fec5bc84fa1c8ed3b89994768f291d6d`
+- Registered package ID: `package_1`
 
 ## Key features
 
@@ -64,4 +65,4 @@ Milestones, grants, agent SLAs, disputes, and public event claims frequently req
 
 ## Current status
 
-EvidenceGraph v1.1 includes the browser MVP, deterministic scoring engine, local registry, registry tests, deployment evidence UI, and two GenLayer-style contract drafts. It is not yet deployed. Replace the on-chain placeholders only with verified network, contract, deployment transaction, registration transaction, and package ID details after a tested deployment.
+EvidenceGraph v1.1 includes the browser MVP, deterministic scoring engine, local registry, registry tests, deployment evidence UI, a Studio-ready contract, and two GenLayer-style contract drafts. The Studio-ready registry is **deployed and verified on the GenLayer Bradbury Testnet** (contract `0xd09032a85dB930dCdE10994579a80D0d70fe3E15`), with on-chain deploy, register-evidence, and review transactions recorded above and in `deployment/deployment_info.json`.

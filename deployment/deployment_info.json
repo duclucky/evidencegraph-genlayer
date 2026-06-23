@@ -1,0 +1,11 @@
+{
+  "project": "EvidenceGraph",
+  "module": "On-chain Evidence Registry",
+  "network": "GenLayer Bradbury Testnet",
+  "contract_address": "0xd09032a85dB930dCdE10994579a80D0d70fe3E15",
+  "deploy_transaction_hash": "0x5d18235a344652f8e86d5c9136526215135413c4277f6ad6cfa894686c2218ef",
+  "example_register_transaction_hash": "0x4895a86adb04e6b2041319341e2caf429da0dd303167daf934ebbd64f8a4ee6f",
+  "review_transaction_hash": "0xc8113b2d9a487a9ba682f35a96bfa752fec5bc84fa1c8ed3b89994768f291d6d",
+  "registered_package_id": "package_1",
+  "deployed_at": "2026-06-23"
+}

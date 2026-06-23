@@ -84,18 +84,19 @@
     <section class="registry-section" id="registry">
       <div class="shell registry-heading">
         <div><p class="eyebrow">EvidenceGraph v1.1</p><h2>On-chain Evidence Registry</h2></div>
-        <p>The local MVP prepares a registry-ready evidence package now. After contract deployment, record the network, contract, and transaction proofs here without changing the underlying evidence score.</p>
+        <p>The local MVP prepares a registry-ready evidence package now. The registry contract is live on the GenLayer Bradbury Testnet; the network, contract, and transaction proofs below come from that verified deployment and do not change the underlying evidence score.</p>
       </div>
       <div class="registry-workspace shell">
         <div class="panel registry-form-panel">
-          <div class="registry-status"><span></span> Deployment-ready draft · No blockchain connection required</div>
-          <div class="section-number"><span>03</span><div><h3>Record deployment evidence</h3><p>Leave fields blank until a verified GenLayer deployment exists.</p></div></div>
+          <div class="registry-status"><span></span> Deployed · GenLayer Bradbury Testnet</div>
+          <div class="section-number"><span>03</span><div><h3>Deployment evidence</h3><p>Verified GenLayer Bradbury Testnet deployment. Edit the fields to record a different environment.</p></div></div>
           <div class="field-grid">
-            <label>Network<input id="registryNetwork" placeholder="e.g. GenLayer testnet"></label>
-            <label>Contract address<input id="registryContractAddress" placeholder="0x..."></label>
+            <label>Network<input id="registryNetwork" placeholder="e.g. GenLayer testnet" value="GenLayer Bradbury Testnet"></label>
+            <label>Contract address<input id="registryContractAddress" placeholder="0x..." value="0xd09032a85dB930dCdE10994579a80D0d70fe3E15"></label>
           </div>
-          <label>Deploy transaction hash<input id="registryDeployTx" placeholder="0x..."></label>
-          <label>Register evidence transaction hash<input id="registryRegisterTx" placeholder="0x..."></label>
+          <label>Deploy transaction hash<input id="registryDeployTx" placeholder="0x..." value="0x5d18235a344652f8e86d5c9136526215135413c4277f6ad6cfa894686c2218ef"></label>
+          <label>Register evidence transaction hash<input id="registryRegisterTx" placeholder="0x..." value="0x4895a86adb04e6b2041319341e2caf429da0dd303167daf934ebbd64f8a4ee6f"></label>
+          <label>Review transaction hash<input id="registryReviewTx" placeholder="0x..." value="0xc8113b2d9a487a9ba682f35a96bfa752fec5bc84fa1c8ed3b89994768f291d6d"></label>
           <div class="registry-note"><strong>What gets registered?</strong><p>The structured EvidenceGraph JSON and its content hash. Scoring remains explainable off-chain; the registry provides durable package identity and review status for an Intelligent Contract.</p></div>
         </div>
 

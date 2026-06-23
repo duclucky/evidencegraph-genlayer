@@ -72,15 +72,23 @@ EvidenceGraph v1.1 adds the **EvidenceGraph On-chain Registry** (internally, the
 
 This upgrade prevents the project from being only a static scoring page: the webapp prepares a deterministic registry payload and copy-ready deployment evidence, while the registry API defines how an Intelligent Contract can persist package identity and review state. The current browser remains connection-free by design; it does not pretend that a local preview is an on-chain transaction.
 
-After a real deployment, the module can produce verifiable Portal evidence:
+After a real deployment, the module produces verifiable Portal evidence: GenLayer network, registry contract address, contract deployment transaction hash, example evidence-registration transaction hash, review transaction hash, and registered package ID. See the **Live GenLayer Deployment** section below, [deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md), and [deployment/deployment_info.json](deployment/deployment_info.json).
 
-- GenLayer network
-- Registry contract address
-- Contract deployment transaction hash
-- Example evidence-registration transaction hash
-- Registered package ID
+## Live GenLayer Deployment
 
-Until deployment, those fields remain explicit placeholders. See [deployment/DEPLOYMENT.md](deployment/DEPLOYMENT.md) and [deployment/deployment_info.example.json](deployment/deployment_info.example.json).
+The Studio-ready registry contract ([contracts/evidence_registry_studio.py](contracts/evidence_registry_studio.py)) is **deployed and verified on the GenLayer Bradbury Testnet**.
+
+| Field | Value |
+|---|---|
+| Network | GenLayer Bradbury Testnet |
+| Contract address | `0xd09032a85dB930dCdE10994579a80D0d70fe3E15` |
+| Deploy transaction hash | `0x5d18235a344652f8e86d5c9136526215135413c4277f6ad6cfa894686c2218ef` |
+| Register evidence transaction hash | `0x4895a86adb04e6b2041319341e2caf429da0dd303167daf934ebbd64f8a4ee6f` |
+| Review transaction hash | `0xc8113b2d9a487a9ba682f35a96bfa752fec5bc84fa1c8ed3b89994768f291d6d` |
+| Registered package ID | `package_1` |
+| Deployed at | 2026-06-23 |
+
+The deploy transaction created the registry, the register-evidence transaction stored an `evidencegraph.v1` package with its content hash, and the review transaction attached a review record without changing the registered evidence. Full machine-readable record: [deployment/deployment_info.json](deployment/deployment_info.json).
 
 ## Scoring rubric
 
@@ -136,8 +144,7 @@ Before deployment, select a verified SDK version, replace in-memory dictionaries
 - Semantic relevance is approximated from use-case and evidence-type matching.
 - Local scoring and registry storage are in memory and reset when the Python process ends.
 - Browser and Python implementations must be kept aligned when the rubric changes.
-- The GenLayer draft has not been deployed or verified against a live SDK/runtime.
-- Network, contract, package, and transaction identifiers are unavailable until a real registry deployment.
+- The two `*_genlayer.py` files remain non-deployable drafts; the deployed contract is `contracts/evidence_registry_studio.py` on the GenLayer Bradbury Testnet.
 
 ## Future improvements
 

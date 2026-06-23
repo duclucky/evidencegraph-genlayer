@@ -118,9 +118,10 @@ function refreshRegistryPreview() {
     `Contract address: ${registryValue("registryContractAddress","[CONTRACT_ADDRESS]")}`,
     `Deploy transaction hash: ${registryValue("registryDeployTx","[DEPLOY_TRANSACTION_HASH]")}`,
     `Register evidence transaction hash: ${registryValue("registryRegisterTx","[REGISTER_EVIDENCE_TRANSACTION_HASH]")}`,
+    `Review transaction hash: ${registryValue("registryReviewTx","[REVIEW_TRANSACTION_HASH]")}`,
     `Evidence package JSON: ${lastJson?"prepared (evidencegraph.v1)":"[REVIEW_A_PACKAGE_FIRST]"}`,
     "Frontend: https://evidencegraph-genlayer.vercel.app",
-    "Registry status: deployment draft — not yet deployed"
+    "Registry status: deployed and verified on GenLayer Bradbury Testnet"
   ].join("\n");
   document.querySelector("#deploymentEvidencePreview").textContent=block;
   return block;
@@ -129,7 +130,7 @@ function refreshRegistryPreview() {
 document.querySelector("#addEvidence").addEventListener("click",()=>addEvidence());
 form.addEventListener("submit",event=>{event.preventDefault();const pack={claim_title:document.querySelector("#claimTitle").value.trim(),claim_description:document.querySelector("#claimDescription").value.trim(),evidence_items:readItems(),target_use_case:document.querySelector("#targetUseCase").value,expected_outcome:document.querySelector("#expectedOutcome").value.trim()};render(pack,scorePack(pack));});
 document.querySelector("#copyJson").addEventListener("click",async event=>{try{await navigator.clipboard.writeText(lastJson);event.target.textContent="Copied";setTimeout(()=>event.target.textContent="Copy JSON",1400);}catch{event.target.textContent="Select JSON below";}});
-document.querySelectorAll("#registryNetwork,#registryContractAddress,#registryDeployTx,#registryRegisterTx").forEach(input=>input.addEventListener("input",refreshRegistryPreview));
+document.querySelectorAll("#registryNetwork,#registryContractAddress,#registryDeployTx,#registryRegisterTx,#registryReviewTx").forEach(input=>input.addEventListener("input",refreshRegistryPreview));
 document.querySelector("#copyDeploymentEvidence").addEventListener("click",async event=>{try{await navigator.clipboard.writeText(refreshRegistryPreview());event.target.textContent="Copied";setTimeout(()=>event.target.textContent="Copy block",1400);}catch{event.target.textContent="Select block below";}});
 document.querySelector("#weakSample").addEventListener("click",()=>loadSample({title:"I completed the milestone",description:"I built everything promised and it works.",useCase:"milestone_proof",outcome:"Approve milestone",items:[{type:"other",url:"",description:"My own statement that the work is complete"}]}));
 document.querySelector("#strongSample").addEventListener("click",()=>loadSample({title:"Milestone shipped with reproducible tests",description:"The public v1.0 release implements the agreed milestone, passes its automated tests, and is demonstrated in a public walkthrough.",useCase:"milestone_proof",outcome:"Approve milestone",items:[{type:"github_repo",url:"https://github.com/example/project",description:"Public source repository"},{type:"commit_release",url:"https://github.com/example/project/releases/tag/v1.0.0",description:"Timestamped release"},{type:"documentation",url:"https://docs.example.org/milestone",description:"Public implementation documentation"},{type:"demo_video",url:"https://youtu.be/example",description:"Working product walkthrough"},{type:"test_result",url:"https://ci.example.org/runs/123",description:"Public automated test result"}]}));
